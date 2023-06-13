@@ -1,6 +1,5 @@
 import chalk from "chalk";
 import readline from 'readline';
-//modulo readline que permite leer la entrada del usuario desde la consola
 // const readline = require("readline");
  
 // //creación de la interfaz readline utilizando el método createInterface()

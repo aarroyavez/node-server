@@ -29,5 +29,18 @@ git clone <https://github.com/aarroyavez/node-server>
 
 cd task-list-node
 
+---
 
+## Uso
+
+Para ejecutar la aplicación, utiliza el siguiente comando:
+
+node tasks.js
+
+yaml
+Copy code
+
+A continuación, aparecerá un menú con las opciones disponibles. Sigue las instrucciones en la consola para interactuar con la aplicación.
+
+---
 

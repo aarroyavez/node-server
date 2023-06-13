@@ -23,7 +23,7 @@ const addTask = () => {
             // Comprobar si ya existe una tarea con igual indicador //
         const repeatedTask = tasks.find(task => task.indicator === indicator);
         if (repeatedTask) {
-                (console.log(chalk.red("❗YA EXISTE UNA TAREA CON EL MISMO INDICADOR. SELECCIONA OTRO NÚMERO")));
+                (console.log(chalk.red("YA EXISTE UNA TAREA CON EL MISMO INDICADOR. SELECCIONA OTRO NÚMERO")));
                 showMenu();
                 return;
             }
@@ -102,14 +102,14 @@ const showMenu = () => {
                 rl.close();
                 break;
             default:
-                console.log(chalk.red("❗INVÁLIDO. DEBE INGRESAR ESCOGER UNA DE LAS OPCIONES DEL MENÚ: 1, 2, 3, 4, 5"));
+                console.log(chalk.red("INVÁLIDO. DEBE INGRESAR ESCOGER UNA DE LAS OPCIONES DEL MENÚ: 1, 2, 3, 4, 5"));
                 showMenu();
                 break;
         }
     });
 };
 
-console.log(chalk.bold.blue("👋BIENVENIDO A LA APP PARA ADMINISTRAR TUS TAREAS📝"));
+console.log(chalk.bold.blue("BIENVENIDO A LA APP PARA ADMINISTRAR TUS TAREAS"));
 
 showMenu();
 

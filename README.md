@@ -31,7 +31,7 @@ cd task-list-node
 ```
 3. Instalar dependencias:
 ```
-npm chalk
+npm install
 ```
 chalk
 ```

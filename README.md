@@ -17,8 +17,6 @@ Aplicación creada con Node.js para crear y eliminar tareas utilizando el modulo
 
 - Node.js instalado
 
-
-
 ## Instalación
 
 1. Clonar este repositorio:
@@ -35,7 +33,7 @@ cd task-list-node
 ```
 npm chalk
 ```
-chakra
+chalk
 ```
 npm install chalk
 ```

@@ -2,7 +2,7 @@
 
 Aplicación creada con Node.js para crear y eliminar tareas utilizando el modulo "readline" para interactuar con el usuario
 
----
+
 
 ## Funcionalidades 
 
@@ -11,13 +11,13 @@ Aplicación creada con Node.js para crear y eliminar tareas utilizando el modulo
 3. Completar Tareas
 4. Ver Lista de Tareas
 
----
+
 
 ## Requisitos 
 
 - Node.js instalado
 
----
+
 
 ## Instalación
 
@@ -29,18 +29,7 @@ git clone <https://github.com/aarroyavez/node-server>
 
 cd task-list-node
 
----
 
-## Uso
 
-Para ejecutar la aplicación, utiliza el siguiente comando:
 
-node tasks.js
-
-yaml
-Copy code
-
-A continuación, aparecerá un menú con las opciones disponibles. Sigue las instrucciones en la consola para interactuar con la aplicación.
-
----
 

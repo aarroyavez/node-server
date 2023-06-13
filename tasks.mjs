@@ -54,7 +54,7 @@ const deleteTask = () => {
         showMenu();
     });
 };
-//permite al usuario marcar una tarea como completada. Solicita al usuario el índice de la tarea a marcar. Si el índice es válido, se actualiza la propiedad completed de la tarea correspondiente en el arreglo tasks a true. Si el índice es inválido, se muestra un mensaje de error
+//permite al usuario marcar una tarea como completada. Solicita al usuario el indicador de la tarea a marcar. Si el indicador es válido, se actualiza la propiedad completed de la tarea correspondiente en el arreglo tasks a true. Si el indicador es inválido, se muestra un mensaje de error
 const completeTask = () => {
     readlineInterface.question(chalk.green("Digite el indicador de la tarea a marcar como completada: "), (indicator) => {
         const task = tasks.find(task => task.indicator === indicator);

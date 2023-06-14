@@ -1,7 +1,6 @@
 import chalk from "chalk";
 import readline from 'readline';
-// const readline = require("readline");
- 
+
 // //creación de la interfaz readline utilizando el método createInterface()
 // Se configurala entrada estándar (process.stdin) como entrada y la salida estándar (process.stdout) como salida de la interfaz.
 const readlineInterface = readline.createInterface({
@@ -10,33 +9,43 @@ const readlineInterface = readline.createInterface({
 });
 // arreglo llamado tasks para almacenar las tareas ingresadas por el usuario
 const tasks = [];
-
+//Función para agregar tarea
+//Función addTask envuelta en una promesa New Promise
+//Función addTask declarada como async para poder usar await dentro
+//addTask es una promesa que solo se resuelve cuando el usuario digita un indicador y una descripción
 const addTask = () => {
-    readlineInterface.question(chalk.green("Por favor, digite un indicador único para la tarea: "), (indicator) =>  {
-            //El indicador debe ser un número
-        if (isNaN(indicator)) {
-            console.log(chalk.red("EL INDICADOR DEBE SER UN NÚMERO. VUELVE A INTENTAR"))
+    return new Promise(async(resolve) => {
+        const indicator = await questionAsync(chalk.green("Por favor, digite un indicador único para la tarea: ")); // await antes de qestionAsyn para esperar la respuesta del usuario
+        //El indicador debe ser un número
+        if (isNaN(indicator)) {(console.log(chalk.red("EL INDICADOR DEBE SER UN NÚMERO. VUELVE A INTENTAR")))
             showMenu();
             return;
         }
-            // Comprobar si ya existe una tarea con igual indicador //
+        // Comprobar si ya existe una tarea con igual indicador //
         const repeatedTask = tasks.find(task => task.indicator === indicator);
-        if (repeatedTask) {
-                (console.log(chalk.red("YA EXISTE UNA TAREA CON EL MISMO INDICADOR. SELECCIONA OTRO NÚMERO")));
+        if (repeatedTask) {(console.log(chalk.red("YA EXISTE UNA TAREA CON EL MISMO INDICADOR. SELECCIONA OTRO NÚMERO")));
                 showMenu();
                 return;
-            }
-            // Preguntas al usuario con question solicitando una descripción única para cada tarea
-        readlineInterface.question(chalk.green("Digite una descripción para la tarea que desee agregar: "), (description) => {            
-            const task = {
-                indicator,
-                description,
-                completed: false
-            };
-            tasks.push(task);
-            console.log(chalk.bold.magenta("TAREA AGREGADA CORRECTAMENTE"));
-            showMenu();
-        });
+        }
+        const description = await questionAsync(chalk.green("Digite una descripción para la tarea que desee agregar: "));
+            // Luego de obtener las respuestas del usuario, se crea la tarea y se agrega al array de tareas y se muestra un mensaje de confirmación            
+        const task = {
+            indicator,
+            description,
+            completed: false
+        };
+            //se llama a resolve para indicar que la promesa se cumplió
+        tasks.push(task);
+        console.log(chalk.bold.magenta("TAREA AGREGADA CORRECTAMENTE"));
+        resolve();
+        showMenu();
+    });
+};
+
+// función auxiliar que envuelve readlineInterface.question() en una promesa
+const questionAsync = (question) => {
+    return new Promise((resolve) => {
+        readlineInterface.question(question, resolve);
     });
 };
 

@@ -22,9 +22,7 @@ Aplicación creada con Node.js para crear y eliminar tareas utilizando el modulo
 1. Clonar este repositorio:
 ``` 
 git clone <https://github.com/aarroyavez/node-server>
-
 ``` 
-
 2. Acceder al directorio:
 ```
 cd task-list-node

@@ -67,7 +67,7 @@ El código se divide en varias partes:
    - Se muestra un mensaje de bienvenida y se llama a la función `showMenu` para iniciar la interacción con el usuario.
 
 
-## FUNCIONES CON PROMESA
+## Funciones con Promesa
 
 Convertimos nuestras funciones `addTask`, `deleteTask`y `completeTask` en funciones con promesa para evaluar los métodos `async/await` y `.then()` y observar en qué se diferencian ambos métodos manejando la asincronía del código. Por ejemplo, ahora al llamar a la función `addTasks()`, se recibirá una promesa que se resolverá cuando el usuario haya agregado un indicador de tarea y una descripción.
 A continuación, un ejemplo de la función `addTask`:
@@ -75,9 +75,9 @@ A continuación, un ejemplo de la función `addTask`:
 1. ¿Qué sucedio al usar `async` y `await`?
 
 ### async / await
-- Se "envolvió" lógica del código en una promesa
-- Se declaró función addTask() como `async`
-- Usar la palabra clave `await` dentro de la función `async`
+- Se "envolvió" la lógica del código en una promesa
+- Se declaró la función `addTask()` como `async`
+- Se usó la palabra clave `await` dentro de la función `async`
 - Se usó `await`antes de llamar `questionAsync`para esperar la respuesta del usuario al momento de digitar el indicador y la descripción de la tarea
 - Se creó una función auxiliar `questionAsync()` que envuelve `readlineInterface.question()` en una promesa.
 - Después de crear la tarea y agregarla al arreglo `tasks`, se llama a `resolve()` para indicar que la promesa se cumplió
@@ -85,6 +85,12 @@ A continuación, un ejemplo de la función `addTask`:
 ### then()
 - Se encadenan las llamadas a la función `question()`, la cual devuelve una promesa. Primero, se recibe el indicador del usuario, luego se verifica si el indicador es un número y posteriormente, se pregunta por la descripción.
 - Al igual, se crea una función auxiliar para envolver `readlineInterface.question` en una promesa
+
+2. Diferencia al usar `asyn/await` y `.then()`
+
+Es evidenciable lo expuesto en los contenidos previos: al usar `async/await`, se vuelve el código más legible, se evita el `callback hell` y el encadenamiento excesivo que se genera al usar `.then()`; además, se facilita su comprensión y posterior mantemiento del código. Usar `,then` hace el código incomprensible.
+
+
 
 
 ## Contribución

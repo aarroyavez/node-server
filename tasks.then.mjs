@@ -1,51 +1,58 @@
 import chalk from "chalk";
 import readline from 'readline';
 
-// //creación de la interfaz readline utilizando el método createInterface()
-// Se configurala entrada estándar (process.stdin) como entrada y la salida estándar (process.stdout) como salida de la interfaz.
 const readlineInterface = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
-const tasks = []; //para almacenar las tareas ingresadas por el usuario
+const tasks = [];
 
 const addTask = () => {
-    return new Promise(async(resolve) => {
-        const indicator = await questionAsync(chalk.green("Por favor, digite un indicador único para la tarea: ")); // await antes de qestionAsyn para esperar la respuesta del usuario
-        if (isNaN(indicator)) {(console.log(chalk.red("EL INDICADOR DEBE SER UN NÚMERO. VUELVE A INTENTAR")))
-            showMenu();
-            return;
-        }
-        const repeatedTask = tasks.find(task => task.indicator === indicator);
-        if (repeatedTask) {(console.log(chalk.red("YA EXISTE UNA TAREA CON EL MISMO INDICADOR. SELECCIONA OTRO NÚMERO")));
+    return new Promise((resolve) => {
+        question(chalk.green("Por favor, digite un indicador único para la tarea: "))
+        .then((indicator) => {
+            if ( isNaN (indicator)) { 
+                console.log(chalk.red("EL INDICADOR DEBE SER UN NÚMERO. VUELVE A INTENTAR"))
+                resolve();
                 showMenu();
                 return;
-        }
-        const description = await questionAsync(chalk.green("Digite una descripción para la tarea que desee agregar: "));
-            // Luego de obtener las respuestas del usuario, se crea la tarea y se agrega al array de tareas y se muestra un mensaje de confirmación            
-        const task = {
-            indicator,
-            description,
-            completed: false
-        };
-            //se llama a resolve para indicar que la promesa se cumplió
-        tasks.push(task);
-        console.log(chalk.bold.magenta("TAREA AGREGADA CORRECTAMENTE"));
-        resolve();
-        showMenu();
+            }
+
+            const repeatedTask = tasks.find(task => task.indicator === indicator);
+            if (repeatedTask) {
+                (console.log(chalk.red("YA EXISTE UNA TAREA CON EL MISMO INDICADOR. SELECCIONA OTRO NÚMERO")));
+                resolve();
+                showMenu();
+                return;
+            }
+
+            question(chalk.green("Digite una descripción para la tarea que desee agregar: "))
+            .then((description) => {
+                const task = {
+                    indicator,
+                    description,
+                    completed: false
+                };
+                
+                tasks.push(task);
+                console.log(chalk.bold.magenta("TAREA AGREGADA CORRECTAMENTE"));
+                resolve();
+                showMenu();
+            });
+
+        });
     });
 };
 
-// función auxiliar que envuelve readlineInterface.question() en una promesa
-const questionAsync = (question) => {
-    return new Promise((resolve) => {
-        readlineInterface.question(question, resolve);
+// Funciín auxiliar para envolver readlineInterface.question en una promesa
+const question = (query) => {
+    return new Promise ((resolve) => {
+        readlineInterface.question(query, resolve);
     });
 };
 
-// para eliminar una tarea del arreglo tasks. Solicita al usuario el indicador de la tarea a eliminar y luego utiliza el método splice() para eliminarla del arreglo.
 const deleteTask = () => {
-    readlineInterface.question("Digite un indicador para la tarea que desee eliminar ", (indicator) => {
+    readlineInterface.question(chalk.green("Digite un indicador para la tarea que desee eliminar"), (indicator) => {
         const taskIndex = tasks.findIndex(task => task.indicator === indicator);
         if (taskIndex !== -1) {
             tasks.splice(taskIndex, 1);
@@ -56,7 +63,7 @@ const deleteTask = () => {
         showMenu();
     });
 };
-//permite al usuario marcar una tarea como completada. Solicita al usuario el indicador de la tarea a marcar. Si el indicador es válido, se actualiza la propiedad completed de la tarea correspondiente en el arreglo tasks a true. Si el indicador es inválido, se muestra un mensaje de error
+
 const completeTask = () => {
     readlineInterface.question(chalk.green("Digite el indicador de la tarea a marcar como completada: "), (indicator) => {
         const task = tasks.find(task => task.indicator === indicator);

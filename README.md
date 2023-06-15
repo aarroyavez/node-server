@@ -22,9 +22,7 @@ Aplicación creada con Node.js para crear y eliminar tareas utilizando el modulo
 1. Clonar este repositorio:
 ``` 
 git clone <https://github.com/aarroyavez/node-server>
-
 ``` 
-
 2. Acceder al directorio:
 ```
 cd task-list-node
@@ -67,6 +65,26 @@ El código se divide en varias partes:
 
 6. Mensaje de bienvenida y ejecución inicial:
    - Se muestra un mensaje de bienvenida y se llama a la función `showMenu` para iniciar la interacción con el usuario.
+
+
+## FUNCIONES CON PROMESA
+
+Convertimos nuestras funciones `addTask`, `deleteTask`y `completeTask` en funciones con promesa para evaluar los métodos `async/await` y `.then()` y observar en qué se diferencian ambos métodos manejando la asincronía del código. Por ejemplo, ahora al llamar a la función `addTasks()`, se recibirá una promesa que se resolverá cuando el usuario haya agregado un indicador de tarea y una descripción.
+
+1. ¿Qué sucedio al usar `async` y `await`?
+
+# async / await
+- Se "envolvió" lógica del código en una promesa
+- Se declaró función addTask() como `async`
+- Usar la palabra clave `await` dentro de la función `async`
+- Se usó `await`antes de llamar `questionAsync`para esperar la respuesta del usuario al momento de digitar el indicador y la descripción de la tarea
+- Se creó una función auxiliar `questionAsync()` que envuelve `readlineInterface.question()` en una promesa.
+- Después de crear la tarea y agregarla al arreglo `tasks`, se llama a `resolve()` para indicar que la promesa se cumplió
+
+# then()
+- Se encadenan las llamadas a la función `question()`, la cual devuelve una promesa. Primero, se recibe el indicador del usuario, luego se verifica si el indicador es un número y posteriormente, se pregunta por la descripción.
+- Al igual, se crea una función auxiliar para envolver `readlineInterface.question` en una promesa
+
 
 ## Contribución
 

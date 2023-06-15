@@ -7,21 +7,15 @@ const readlineInterface = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
-// arreglo llamado tasks para almacenar las tareas ingresadas por el usuario
-const tasks = [];
-//Función para agregar tarea
-//Función addTask envuelta en una promesa New Promise
-//Función addTask declarada como async para poder usar await dentro
-//addTask es una promesa que solo se resuelve cuando el usuario digita un indicador y una descripción
+const tasks = []; //para almacenar las tareas ingresadas por el usuario
+
 const addTask = () => {
     return new Promise(async(resolve) => {
         const indicator = await questionAsync(chalk.green("Por favor, digite un indicador único para la tarea: ")); // await antes de qestionAsyn para esperar la respuesta del usuario
-        //El indicador debe ser un número
         if (isNaN(indicator)) {(console.log(chalk.red("EL INDICADOR DEBE SER UN NÚMERO. VUELVE A INTENTAR")))
             showMenu();
             return;
         }
-        // Comprobar si ya existe una tarea con igual indicador //
         const repeatedTask = tasks.find(task => task.indicator === indicator);
         if (repeatedTask) {(console.log(chalk.red("YA EXISTE UNA TAREA CON EL MISMO INDICADOR. SELECCIONA OTRO NÚMERO")));
                 showMenu();

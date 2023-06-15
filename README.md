@@ -2,7 +2,7 @@
 
 Aplicación creada con Node.js para crear y eliminar tareas utilizando el modulo "readline" para interactuar con el usuario
 
-![menu-bienvenida](/images/menu-bienvenida.JPG)
+![menu-bienvenida](/images/menu-bienvenida.jpg)
 
 ## Funcionalidades 
 

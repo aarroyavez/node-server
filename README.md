@@ -73,7 +73,7 @@ Convertimos nuestras funciones `addTask`, `deleteTask`y `completeTask` en funcio
 
 1. ¿Qué sucedio al usar `async` y `await`?
 
-# async / await
+### async / await
 - Se "envolvió" lógica del código en una promesa
 - Se declaró función addTask() como `async`
 - Usar la palabra clave `await` dentro de la función `async`
@@ -81,7 +81,7 @@ Convertimos nuestras funciones `addTask`, `deleteTask`y `completeTask` en funcio
 - Se creó una función auxiliar `questionAsync()` que envuelve `readlineInterface.question()` en una promesa.
 - Después de crear la tarea y agregarla al arreglo `tasks`, se llama a `resolve()` para indicar que la promesa se cumplió
 
-# then()
+### then()
 - Se encadenan las llamadas a la función `question()`, la cual devuelve una promesa. Primero, se recibe el indicador del usuario, luego se verifica si el indicador es un número y posteriormente, se pregunta por la descripción.
 - Al igual, se crea una función auxiliar para envolver `readlineInterface.question` en una promesa
 
@@ -90,9 +90,7 @@ Convertimos nuestras funciones `addTask`, `deleteTask`y `completeTask` en funcio
 
 Si encuentras algún error, tienes alguna sugerencia o deseas contribuir de alguna forma, siéntete libre de abrir un problema o enviar una solicitud de extracción.
 
-## Licencia
 
-Este proyecto está bajo la Licencia MIT. Puedes obtener más información en el archivo [LICENSE](LICENSE).
 
 
 

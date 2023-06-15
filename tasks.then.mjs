@@ -12,7 +12,7 @@ const addTask = () => {
         question(chalk.green("Por favor, digite un indicador único para la tarea: "))
         .then((indicator) => {
             if ( isNaN (indicator)) { 
-                console.log(chalk.red("EL INDICADOR DEBE SER UN NÚMERO. VUELVE A INTENTAR"))
+                console.log(chalk.red("EL INDICADOR DEBE SER UN NÚMERO ❌👉 VUELVE A INTENTAR"))
                 resolve();
                 showMenu();
                 return;
@@ -20,7 +20,7 @@ const addTask = () => {
 
             const repeatedTask = tasks.find(task => task.indicator === indicator);
             if (repeatedTask) {
-                (console.log(chalk.red("YA EXISTE UNA TAREA CON EL MISMO INDICADOR. SELECCIONA OTRO NÚMERO")));
+                (console.log(chalk.red("YA EXISTE UNA TAREA CON EL MISMO INDICADOR ❌👉 SELECCIONA OTRO NÚMERO")));
                 resolve();
                 showMenu();
                 return;
@@ -35,7 +35,7 @@ const addTask = () => {
                 };
                 
                 tasks.push(task);
-                console.log(chalk.bold.magenta("TAREA AGREGADA CORRECTAMENTE"));
+                console.log(chalk.bold.magenta("TAREA AGREGADA CORRECTAMENTE✅"));
                 resolve();
                 showMenu();
             });
@@ -44,7 +44,7 @@ const addTask = () => {
     });
 };
 
-// Funciín auxiliar para envolver readlineInterface.question en una promesa
+// Función auxiliar para envolver readlineInterface.question en una promesa
 const question = (query) => {
     return new Promise ((resolve) => {
         readlineInterface.question(query, resolve);
@@ -52,28 +52,36 @@ const question = (query) => {
 };
 
 const deleteTask = () => {
-    readlineInterface.question(chalk.green("Digite un indicador para la tarea que desee eliminar"), (indicator) => {
-        const taskIndex = tasks.findIndex(task => task.indicator === indicator);
-        if (taskIndex !== -1) {
-            tasks.splice(taskIndex, 1);
-            console.log(chalk.bold.magenta("TAREA ELIMINADA CORRECTAMENTE."));
-        } else {
-            console.log(chalk.red("¡NINGUNA TAREA COINCIDE CON EL INDICADOR PROPORCIONADO!"));
-        }
-        showMenu();
+    return new Promise((resolve) => {
+        question(chalk.green("Digite un indicador para la tarea que desee eliminar: "))
+        .then((indicator) => {
+            const taskIndex = tasks.findIndex((task) => task.indicator === indicator);
+            if (taskIndex !== -1) {
+                tasks.splice(taskIndex, 1);
+                console.log(chalk.bold.magenta("TAREA ELIMINADA CORRECTAMENTE.✅"));
+            } else {
+                console.log(chalk.red("¡NINGUNA TAREA COINCIDE CON EL INDICADOR PROPORCIONADO!❌"));
+            }
+            resolve();
+            showMenu();
+        });
     });
 };
-
+        
 const completeTask = () => {
-    readlineInterface.question(chalk.green("Digite el indicador de la tarea a marcar como completada: "), (indicator) => {
-        const task = tasks.find(task => task.indicator === indicator);
-        if (task) {
-            task.completed = true;
-            console.log(chalk.magenta("TAREA MARCADA COMO COMPLETADA CORRECTAMENTE."));
-        } else {
-            console.log(chalk.red("¡NINGUNA TAREA COINCIDE CON EL INDICADOR PROPORCIONADO!"));
-        }
-        showMenu();
+    return new Promise((resolve) => {
+        question(chalk.green("Digite el indicador de la tarea a marcar como completada: "))
+        .then((indicator) => {
+            const task = tasks.find(task => task.indicator === indicator);
+            if (task) {
+                task.completed = true;
+                console.log(chalk.magenta("TAREA MARCADA COMO COMPLETADA CORRECTAMENTE.✅"));
+            } else {
+                console.log(chalk.red("¡NINGUNA TAREA COINCIDE CON EL INDICADOR PROPORCIONADO!❌"));
+            }
+            resolve();
+            showMenu();
+        })
     });
 };
 

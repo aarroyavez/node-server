@@ -70,6 +70,7 @@ El código se divide en varias partes:
 ## FUNCIONES CON PROMESA
 
 Convertimos nuestras funciones `addTask`, `deleteTask`y `completeTask` en funciones con promesa para evaluar los métodos `async/await` y `.then()` y observar en qué se diferencian ambos métodos manejando la asincronía del código. Por ejemplo, ahora al llamar a la función `addTasks()`, se recibirá una promesa que se resolverá cuando el usuario haya agregado un indicador de tarea y una descripción.
+A continuación, un ejemplo de la función `addTask`:
 
 1. ¿Qué sucedio al usar `async` y `await`?
 

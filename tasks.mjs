@@ -12,12 +12,14 @@ const tasks = []; //para almacenar las tareas ingresadas por el usuario
 const addTask = () => {
     return new Promise(async(resolve) => {
         const indicator = await questionAsync(chalk.green("Por favor, digite un indicador único para la tarea: ")); // await antes de qestionAsyn para esperar la respuesta del usuario
-        if (isNaN(indicator)) {(console.log(chalk.red("EL INDICADOR DEBE SER UN NÚMERO. VUELVE A INTENTAR")))
+        if (isNaN(indicator)) {
+            (console.log(chalk.red("EL INDICADOR DEBE SER UN NÚMERO. VUELVE A INTENTAR")))
             showMenu();
             return;
         }
         const repeatedTask = tasks.find(task => task.indicator === indicator);
-        if (repeatedTask) {(console.log(chalk.red("YA EXISTE UNA TAREA CON EL MISMO INDICADOR. SELECCIONA OTRO NÚMERO")));
+        if (repeatedTask) {
+            (console.log(chalk.red("YA EXISTE UNA TAREA CON EL MISMO INDICADOR. SELECCIONA OTRO NÚMERO")));
                 showMenu();
                 return;
         }
@@ -43,16 +45,19 @@ const questionAsync = (question) => {
     });
 };
 
-// para eliminar una tarea del arreglo tasks. Solicita al usuario el indicador de la tarea a eliminar y luego utiliza el método splice() para eliminarla del arreglo.
 const deleteTask = () => {
-    readlineInterface.question("Digite un indicador para la tarea que desee eliminar ", (indicator) => {
+    return new Promise(async(resolve) => {
+        const indicator = await questionAsync("Digite un indicador para la tarea que desee eliminar ");
         const taskIndex = tasks.findIndex(task => task.indicator === indicator);
         if (taskIndex !== -1) {
             tasks.splice(taskIndex, 1);
-            console.log(chalk.bold.magenta("TAREA ELIMINADA CORRECTAMENTE."));
+            console.log(chalk.bold.magenta
+                    ("TAREA ELIMINADA CORRECTAMENTE."));
         } else {
-            console.log(chalk.red("¡NINGUNA TAREA COINCIDE CON EL INDICADOR PROPORCIONADO!"));
+            console.log(chalk.red
+                ("¡NINGUNA TAREA COINCIDE CON EL INDICADOR PROPORCIONADO!"));
         }
+        resolve();
         showMenu();
     });
 };

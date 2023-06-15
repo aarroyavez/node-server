@@ -2,7 +2,7 @@
 
 Aplicación creada con Node.js para crear y eliminar tareas utilizando el modulo "readline" para interactuar con el usuario
 
-
+![menu-bienvenida](images/menu-bienvenida.jpg)
 
 ## Funcionalidades 
 
@@ -10,8 +10,6 @@ Aplicación creada con Node.js para crear y eliminar tareas utilizando el modulo
 2. Eliminar Tareas
 3. Completar Tareas
 4. Ver Lista de Tareas
-
-
 
 ## Requisitos 
 
@@ -66,7 +64,6 @@ El código se divide en varias partes:
 6. Mensaje de bienvenida y ejecución inicial:
    - Se muestra un mensaje de bienvenida y se llama a la función `showMenu` para iniciar la interacción con el usuario.
 
-
 ## Funciones con Promesa
 
 Convertimos nuestras funciones `addTask`, `deleteTask`y `completeTask` en funciones con promesa para evaluar los métodos `async/await` y `.then()` y observar en qué se diferencian ambos métodos manejando la asincronía del código. Por ejemplo, ahora al llamar a la función `addTasks()`, se recibirá una promesa que se resolverá cuando el usuario haya agregado un indicador de tarea y una descripción.
@@ -82,15 +79,13 @@ A continuación, un ejemplo de la función `addTask`:
 - Se creó una función auxiliar `questionAsync()` que envuelve `readlineInterface.question()` en una promesa.
 - Después de crear la tarea y agregarla al arreglo `tasks`, se llama a `resolve()` para indicar que la promesa se cumplió
 
-### then()
+### .then()
 - Se encadenan las llamadas a la función `question()`, la cual devuelve una promesa. Primero, se recibe el indicador del usuario, luego se verifica si el indicador es un número y posteriormente, se pregunta por la descripción.
 - Al igual, se crea una función auxiliar para envolver `readlineInterface.question` en una promesa
 
 2. Diferencia al usar `asyn/await` y `.then()`
 
-Es evidenciable lo expuesto en los contenidos previos: al usar `async/await`, se vuelve el código más legible, se evita el `callback hell` y el encadenamiento excesivo que se genera al usar `.then()`; además, se facilita su comprensión y posterior mantemiento del código. Usar `,then` hace el código incomprensible.
-
-
+Es evidenciable lo expuesto en los contenidos previos: al usar `async/await`, se vuelve el código más legible, se evita el `callback hell` y el encadenamiento excesivo que se genera al usar `.then()`; además, se facilita su comprensión y posterior mantemiento del código. Usar `,then` hace el código difícil de comprender.
 
 
 ## Contribución

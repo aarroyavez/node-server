@@ -1,6 +1,5 @@
 import chalk from "chalk";
 import readline from 'readline';
-
 // //creación de la interfaz readline utilizando el método createInterface()
 // Se configurala entrada estándar (process.stdin) como entrada y la salida estándar (process.stdout) como salida de la interfaz.
 const readlineInterface = readline.createInterface({
@@ -13,13 +12,13 @@ const addTask = () => {
     return new Promise(async(resolve) => {
         const indicator = await questionAsync(chalk.green("Por favor, digite un indicador único para la tarea: ")); // await antes de qestionAsyn para esperar la respuesta del usuario
         if (isNaN(indicator)) {
-            (console.log(chalk.red("EL INDICADOR DEBE SER UN NÚMERO. VUELVE A INTENTAR")))
+            (console.log(chalk.red("EL INDICADOR DEBE SER UN NÚMERO❗👉VUELVE A INTENTAR")))
             showMenu();
             return;
         }
         const repeatedTask = tasks.find(task => task.indicator === indicator);
         if (repeatedTask) {
-            (console.log(chalk.red("YA EXISTE UNA TAREA CON EL MISMO INDICADOR. SELECCIONA OTRO NÚMERO")));
+            (console.log(chalk.red("YA EXISTE UNA TAREA CON EL MISMO INDICADOR❌👉SELECCIONA OTRO NÚMERO")));
                 showMenu();
                 return;
         }
@@ -32,7 +31,7 @@ const addTask = () => {
         };
             //se llama a resolve para indicar que la promesa se cumplió
         tasks.push(task);
-        console.log(chalk.bold.magenta("TAREA AGREGADA CORRECTAMENTE"));
+        console.log(chalk.magenta("TAREA AGREGADA CORRECTAMENTE✅"));
         resolve();
         showMenu();
     });
@@ -47,30 +46,32 @@ const questionAsync = (question) => {
 
 const deleteTask = () => {
     return new Promise(async(resolve) => {
-        const indicator = await questionAsync("Digite un indicador para la tarea que desee eliminar ");
+        const indicator = await questionAsync("Digite un indicador para la tarea que desee eliminar: ");
         const taskIndex = tasks.findIndex(task => task.indicator === indicator);
         if (taskIndex !== -1) {
             tasks.splice(taskIndex, 1);
             console.log(chalk.bold.magenta
-                    ("TAREA ELIMINADA CORRECTAMENTE."));
+                    ("TAREA ELIMINADA CORRECTAMENTE✅"));
         } else {
             console.log(chalk.red
-                ("¡NINGUNA TAREA COINCIDE CON EL INDICADOR PROPORCIONADO!"));
+                ("¡NINGUNA TAREA COINCIDE CON EL INDICADOR PROPORCIONADO❗"));
         }
         resolve();
         showMenu();
     });
 };
-//permite al usuario marcar una tarea como completada. Solicita al usuario el indicador de la tarea a marcar. Si el indicador es válido, se actualiza la propiedad completed de la tarea correspondiente en el arreglo tasks a true. Si el indicador es inválido, se muestra un mensaje de error
+
 const completeTask = () => {
-    readlineInterface.question(chalk.green("Digite el indicador de la tarea a marcar como completada: "), (indicator) => {
+    return new Promise(async(resolve) => {
+        const indicator = await questionAsync("Digite el indicador de la tarea a marcar como completada: ")
         const task = tasks.find(task => task.indicator === indicator);
         if (task) {
             task.completed = true;
-            console.log(chalk.magenta("TAREA MARCADA COMO COMPLETADA CORRECTAMENTE."));
+            console.log(chalk.magenta("TAREA MARCADA COMO COMPLETADA CORRECTAMENTE✅"));
         } else {
-            console.log(chalk.red("¡NINGUNA TAREA COINCIDE CON EL INDICADOR PROPORCIONADO!"));
+            console.log(chalk.red("¡NINGUNA TAREA COINCIDE CON EL INDICADOR PROPORCIONADO❗"));
         }
+        resolve();
         showMenu();
     });
 };

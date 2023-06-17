@@ -31,7 +31,8 @@ cd task-list-node
 ```
 npm install nodemon
 ```
-const http = requiere("http)
+```
+const http = requiere("http")
 ```
 const readline = require("readline")
 ```

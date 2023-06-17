@@ -3,5 +3,16 @@
     "chalk": "^5.2.0",
     "nodemon": "^2.0.22",
     "readline-sync": "^1.4.10"
-  }
+  },
+  "name": "task-list-node",
+  "description": "Aplicación creada con Node.js para crear y eliminar tareas utilizando el modulo \"readline\" para interactuar con el usuario desde la consola!",
+  "version": "1.0.0",
+  "main": "tasks.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

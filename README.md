@@ -1,3 +1,9 @@
+# Creando Servidores Web con node.js
+
+Creando un servidor con `http.createServer()` y retornando el arreglo de `tasks` como un objeto
+
+![server](/images/server.JPG)
+
 ## Task  List ##
 
 Aplicación creada con Node.js para crear y eliminar tareas utilizando el modulo "readline" para interactuar con el usuario desde la consola!

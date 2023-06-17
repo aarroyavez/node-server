@@ -3,11 +3,6 @@ const http = require("http");
 const port = 3000;
 const host = "localhost";
 
-const questionAsync = (question) => {
-    return new Promise((resolve) => {
-        readlineInterface.question(question, resolve);
-    });
-};
 const readlineInterface = readline.createInterface({
     input: process.stdin,
     output: process.stdout
@@ -27,6 +22,11 @@ server.listen(port, host, () => {
     console.log("")
 })
 
+const questionAsync = (question) => {
+    return new Promise((resolve) => {
+        readlineInterface.question(question, resolve);
+    });
+};
 const addTask = () => {
     return new Promise(async(resolve) => {
         const indicator = await questionAsync("Por favor, digite un indicador único para la tarea: "); // await antes de qestionAsyn para esperar la respuesta del usuario
